@@ -1,23 +1,30 @@
-About Hudson CI and Jerkins CI
-==============================
+Jerkins and Udson any user dameon script
+========================================
 
-More info about Jerkins CI: http://jenkins-ci.org/
-More info about Hudosn CI: http://hudson-ci.org/
+It's the simplest way to any linux start and stop the Jerskins or Hudson .war file in a single bash user from a server. It will ran in background mode silent, and generate a log file to keep tracking the output.
+
+### About CI:
+
+* [Jerkins](http://jenkins-ci.org/) -- Fork from the original team after Oracle buy Sun.
+* [Hudson](http://hudson-ci.org/) -- Original project maintained by Oracle as free (for how long?)
+* [Wikipedia](http://en.wikipedia.org/wiki/Continuous_integration) -- Just if you don't know why are you here...
 
 This script will work with both, actualy I'm a jerkins lover, but I started to use it before the project fork. So keep to your self the responsability of choice.
 
 How to install
-==============
+--------------
 
 In the same folder you will put the files:
+
+~~~
 hudosn.jar
 hudsond
+~~~
 
 You can rename to jerkins.jar or jerkinsd as you wan't, but edit the configs in hudsond before.
 
 Create a folder .hudson in your user home with privileges to user can read/write/exec
 
-i.e:
 ~~~
 cd ~/
 mkdir .hudson
@@ -26,7 +33,7 @@ chmod 0750 .hudson
 ~~~
 
 Configuration
-=============
+-------------
 
 Simple like sugar, open you hudsond.
 
@@ -42,21 +49,22 @@ HUDSON_ADMIN_USER=admin
 ~~~
 
 Starting Hudson
-===============
+---------------
 
 When you type:
-    ./hudsond start
-It will start as background, so you can close you tty if you want. And will be accessible in ADD and PORT you setup.
-Like http://127.0.0.1:9080
 
-I recomend you do a reverse proxy to the internal address with a custom config from apache2 or nginx
-[ref-apache2] http://httpd.apache.org/
-[ref-nginx] http://nginx.net/
+    ./hudsond start
+
+It will start as background, so you can close you tty if you want. And will be accessible in ADD and PORT you setup.
+
+Like `http://127.0.0.1:9080`
+
+I recomend you do a reverse proxy to the internal address with a custom config from [apache2][ref-apache2] or [nginx][ref-nginx]
 
 You also can configure to use HTTPS in the proxy-reverse, but don't forget to configure in the hudson/jerkins options setup. Or it will advice you anyway.
 
 License
-=======
+-------
 
 Copyright 2011 Gabriel Reitz Giannattasio. All rights reserved.
 
@@ -83,3 +91,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 The views and conclusions contained in the software and documentation are those of the
 authors and should not be interpreted as representing official policies, either expressed
 or implied, of Gabriel Reitz Giannattasio.
+
+
+[ref-apache2]: http://httpd.apache.org/
+[ref-nginx]: http://nginx.net/
