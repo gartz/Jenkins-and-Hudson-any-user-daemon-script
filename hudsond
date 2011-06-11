@@ -1,0 +1,71 @@
+#!/bin/bash
+
+DESC="Hudson CI Server"
+HUDWON_FOLDER=${HOME}/hudson/
+HUDSON_WAR=hudson.war
+HUDSON_LOG=hudson.log
+JAVA=/usr/bin/java
+PORT=9080
+ADDR=127.0.0.1
+HUDSON_ADMIN_USER=admin
+
+d_start() {
+	echo -n $"Starting $DESC service: "
+	nohup nice $JAVA -jar ${HUDWON_FOLDER}${HUDSON_WAR} --httpPort=${PORT} --httpListenAddress=${ADDR} --argumentsRealm.roles.${HUDSON_ADMIN_USER}=admin > ${HUDWON_FOLDER}${HUDSON_LOG} 2>&1 &
+	RETVAL=$?
+	echo
+}
+
+d_stop() {
+	action $"Stopping Hudson service: "
+	kill `ps -ef | grep $HUDSON_WAR | grep ${USER} | grep -v grep | awk '{ print $2 }'`
+	RETVAL=$?
+	echo
+}
+
+d_stop_all() {
+	echo "Only work in root mode"
+	action $"Stopping Hudson service: " 
+	d_stop
+	sleep 1
+	pkill -15 -u hudson 
+	sleep 5
+	pkill -9 -u hudson
+	RETVAL=$?
+	echo
+}
+
+d_status() {
+	numproc=`ps -ef | grep $HUDSON_WAR | grep ${USER} | grep -v "grep ${HUDSON_WAR}" | wc -l`
+	if [ $numproc -gt 0 ]; then
+		echo "Hudson is running..."
+	else
+		echo "Hudson is stopped..."
+	fi
+}
+
+case $1 in
+	start)
+		d_start
+	;;
+	stop)
+		d_stop
+	;;
+	status)
+		d_status
+	;;
+	stop_all)
+		d_stop_all
+	;;
+	restart)
+		d_stop
+		sleep 1
+		d_start
+	;;
+	*)
+	echo "usage: $NAME {start|stop|restart|status|stop_all}"
+	exit 1
+	;;
+esac
+
+exit 0
