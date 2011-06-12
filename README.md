@@ -73,15 +73,6 @@ You also can configure to use HTTPS in the proxy-reverse, but don't forget to co
 
 Type only `./hudsond` to display help commands.
 
-Display log on screen:
-
-    cat hudson.log
-
-
-Display real-time log:
-
-    tail -f hudson.log
-
 
 See status from hudson daemon:
 
@@ -91,6 +82,7 @@ See status from hudson daemon:
 Stop you user daemon:
 
     ./hudosnd stop
+
 
 ### Updating Jenkins or Hudson
 
@@ -108,6 +100,7 @@ Stop all hudosn instances running in your server:
 
 Atention: you need to have `su` privileges, or use `sudo ./hudosnd stop_all`
 
+
 Extra Tips
 ----------
 
@@ -116,6 +109,16 @@ Some tips to help you improve the usability of the hudson daemon script.
 ### Exec Path
 
 You can put the `hudsond` file inside your `$HOME\bin` folder or add to `$PATH` to execute directly like `hudsond start` without `./` prefix.
+
+### Reading logs
+
+Display log on screen:
+
+    cat hudson.log
+
+Display real-time log:
+
+    tail -f hudson.log
 
 License
 -------
