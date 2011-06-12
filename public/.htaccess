@@ -1,0 +1,6 @@
+RewriteEngine On
+
+# Use last flag because no more rewrite can be applied after proxy pass
+RewriteRule       ^/(.*)$  http://127.0.0.1:9081/$1 [P,L]
+ProxyPassReverse  /        http://127.0.0.1:9081/
+#ProxyRequests     Off
