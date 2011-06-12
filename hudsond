@@ -5,7 +5,7 @@ HUDWON_FOLDER=${HOME}/hudson/
 HUDSON_WAR=hudson.war
 HUDSON_LOG=hudson.log
 JAVA=/usr/bin/java
-PORT=9080
+PORT=9081
 ADDR=127.0.0.1
 HUDSON_ADMIN_USER=admin
 

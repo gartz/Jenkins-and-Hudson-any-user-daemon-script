@@ -1,15 +1,15 @@
-Jerkins and Udson any user dameon script
-========================================
+Jernins and Hudson any user dameon script
+=========================================
 
 It's the simplest way to any linux start and stop the Jerskins or Hudson .war file in a single bash user from a server. It will ran in background mode silent, and generate a log file to keep tracking the output.
 
 ### About CI:
 
-* [Jerkins](http://jenkins-ci.org/) -- Fork from the original team after Oracle buy Sun.
+* [Jenkins](http://jenkins-ci.org/) -- Fork from the original team after Oracle buy Sun.
 * [Hudson](http://hudson-ci.org/) -- Original project maintained by Oracle as free (for how long?)
 * [Wikipedia](http://en.wikipedia.org/wiki/Continuous_integration) -- Just if you don't know why are you here...
 
-This script will work with both, actualy I'm a jerkins lover, but I started to use it before the project fork. So keep to your self the responsability of choice.
+This script will work with both, actualy I'm a jenkins lover, but I started to use it before the project fork. So keep to your self the responsability of choice.
 
 How to install
 --------------
@@ -21,7 +21,7 @@ hudosn.jar
 hudsond
 ~~~
 
-You can rename to jerkins.jar or jerkinsd as you wan't, but edit the configs in hudsond before.
+You can rename to jenkins.jar or jenkinsd as you wan't, but edit the configs in hudsond before.
 
 Create a folder .hudson in your user home with privileges to user can read/write/exec
 
@@ -30,6 +30,12 @@ cd ~/
 mkdir .hudson
 chown $USER .hudosn
 chmod 0750 .hudson
+~~~
+
+Add execute privileges to `hudsond`
+
+~~~
+chmod +x ./hudsond
 ~~~
 
 Configuration
@@ -61,7 +67,55 @@ Like `http://127.0.0.1:9080`
 
 I recomend you do a reverse proxy to the internal address with a custom config from [apache2][ref-apache2] or [nginx][ref-nginx]
 
-You also can configure to use HTTPS in the proxy-reverse, but don't forget to configure in the hudson/jerkins options setup. Or it will advice you anyway.
+You also can configure to use HTTPS in the proxy-reverse, but don't forget to configure in the hudson/jenkins options setup. Or it will advice you anyway.
+
+### Other useful commands
+
+Type only `./hudsond` to display help commands.
+
+Display log on screen:
+
+    cat hudson.log
+
+
+Display real-time log:
+
+    tail -f hudson.log
+
+
+See status from hudson daemon:
+
+    ./hudsond status
+
+
+Stop you user daemon:
+
+    ./hudosnd stop
+
+### Updating Jenkins or Hudson
+
+After you mark your server to secury restart in the application, now you can use the `hudsond` to restart your application simple like:
+
+~~~
+./hudsond restart
+~~~
+
+### Root commands
+
+Stop all hudosn instances running in your server:
+
+    ./hudosnd stop_all
+
+Atention: you need to have `su` privileges, or use `sudo ./hudosnd stop_all`
+
+Extra Tips
+----------
+
+Some tips to help you improve the usability of the hudson daemon script.
+
+### Exec Path
+
+You can put the `hudsond` file inside your `$HOME\bin` folder or add to `$PATH` to execute directly like `hudsond start` without `./` prefix.
 
 License
 -------
