@@ -14,9 +14,9 @@ This script will work with both, actualy I'm a jenkins lover, but I started to u
 How to install
 --------------
 
-# Download Hudson or Jenkins to a folder (you can use the built-in project .war file if you want)
-# Move the `bin/hudsond` folder to your `$HOME/bin/hudsond`
-# Use [vi](http://en.wikipedia.org/wiki/Vi) or [nano](http://en.wikipedia.org/wiki/Nano_%28text_editor%29) to edit `hudsond` configs.
+1. Download Hudson or Jenkins to a folder (you can use the built-in project .war file if you want)
+2. Move the `bin/hudsond` folder to your `$HOME/bin/hudsond`
+3. Use [vi](http://en.wikipedia.org/wiki/Vi) or [nano](http://en.wikipedia.org/wiki/Nano_%28text_editor%29) to edit `hudsond` configs.
 
 You can rename `hudson.jar` to `jenkins.jar` and/or `hudsond` to `jenkinsd` as you wan't, but don't forget to edit the configs.
 
