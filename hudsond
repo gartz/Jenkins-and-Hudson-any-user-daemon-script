@@ -17,15 +17,15 @@ d_start() {
 }
 
 d_stop() {
-	action $"Stopping Hudson service: "
-	kill `ps -ef | grep $HUDSON_WAR | grep ${USER} | grep -v grep | awk '{ print $2 }'`
+	echo $"Stopping Hudson service: "
+	kill `ps -ef | grep ${USER}.*${HUDSON_WAR} | grep -v grep | awk '{ print $2 }'`
 	RETVAL=$?
 	echo
 }
 
 d_stop_all() {
 	echo "Only work in root mode"
-	action $"Stopping Hudson service: " 
+	echo $"Stopping Hudson service: " 
 	d_stop
 	sleep 1
 	pkill -15 -u hudson 
@@ -36,7 +36,7 @@ d_stop_all() {
 }
 
 d_status() {
-	numproc=`ps -ef | grep $HUDSON_WAR | grep ${USER} | grep -v "grep ${HUDSON_WAR}" | wc -l`
+	numproc=`ps -ef | grep ${USER}.*${HUDSON_WAR} | grep -v "grep ${HUDSON_WAR}" | wc -l`
 	if [ $numproc -gt 0 ]; then
 		echo "Hudson is running..."
 	else
