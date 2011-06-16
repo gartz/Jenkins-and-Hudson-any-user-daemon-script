@@ -14,14 +14,11 @@ This script will work with both, actualy I'm a jenkins lover, but I started to u
 How to install
 --------------
 
-In the same folder you will put the files:
+# Download Hudson or Jenkins to a folder (you can use the built-in project .war file if you want)
+# Move the `bin/hudsond` folder to your `$HOME/bin/hudsond`
+# Use [vi](http://en.wikipedia.org/wiki/Vi) or [nano](http://en.wikipedia.org/wiki/Nano_%28text_editor%29) to edit `hudsond` configs.
 
-~~~
-hudosn.jar
-hudsond
-~~~
-
-You can rename to jenkins.jar or jenkinsd as you wan't, but edit the configs in hudsond before.
+You can rename `hudson.jar` to `jenkins.jar` and/or `hudsond` to `jenkinsd` as you wan't, but don't forget to edit the configs.
 
 Create a folder .hudson in your user home with privileges to user can read/write/exec
 
@@ -35,6 +32,7 @@ chmod 0750 .hudson
 Add execute privileges to `hudsond`
 
 ~~~
+cd $HOME/bin
 chmod +x ./hudsond
 ~~~
 
@@ -45,9 +43,9 @@ Simple like sugar, open you hudsond.
 
 ~~~
 DESC="Hudson CI Server"
-HUDWON_FOLDER=${HOME}/hudson/
+HUDSON_FOLDER=${HOME}/hudson
 HUDSON_WAR=hudson.war
-HUDSON_LOG=hudson.log
+HUDSON_LOG=${HUDSON_FOLDER}/hudson.log
 JAVA=/usr/bin/java
 PORT=9080
 ADDR=127.0.0.1
@@ -59,7 +57,10 @@ Starting Hudson
 
 When you type:
 
-    ./hudsond start
+~~~
+cd $HOME/bin
+./hudsond start
+~~~
 
 It will start as background, so you can close you tty if you want. And will be accessible in ADD and PORT you setup.
 
@@ -69,7 +70,20 @@ I recomend you do a reverse proxy to the internal address with a custom config f
 
 You also can configure to use HTTPS in the proxy-reverse, but don't forget to configure in the hudson/jenkins options setup. Or it will advice you anyway.
 
+### Descriptions
+
+`DESC`: A description of the daemon
+`HUDSON_FOLDER`: The folder were exec package of hudson or jenkins are found
+`HUDSON_WAR`: The file name of exec package of hudson or jenkins
+`HUDSON_LOG`: File where the logs will be storage.
+`JAVA`: Java executable
+`PORT`: Port to access by HTTP protocol
+`ADDR`: Address to access the server, you can use * for any IP
+`HUDSON_ADMIN_USER`: The user that have super privileges
+
 ### Other useful commands
+
+Assuming you are inside the `bin/` folder...
 
 Type only `./hudsond` to display help commands.
 
@@ -109,6 +123,10 @@ Some tips to help you improve the usability of the hudson daemon script.
 ### Exec Path
 
 You can put the `hudsond` file inside your `$HOME\bin` folder or add to `$PATH` to execute directly like `hudsond start` without `./` prefix.
+
+Edit your `.bash_profile` last line:
+
+    PATH=$PATH:$HOME/bin
 
 ### Reading logs
 
