@@ -1,9 +1,9 @@
 #!/bin/bash
 
 DESC="Hudson CI Server"
-HUDWON_FOLDER=${HOME}/hudson/
+HUDSON_FOLDER=${HOME}/hudson
 HUDSON_WAR=hudson.war
-HUDSON_LOG=hudson.log
+HUDSON_LOG=${HUDSON_FOLDER}/hudson.log
 JAVA=/usr/bin/java
 PORT=9081
 ADDR=127.0.0.1
@@ -11,7 +11,7 @@ HUDSON_ADMIN_USER=admin
 
 d_start() {
 	echo -n $"Starting $DESC service: "
-	nohup nice $JAVA -jar ${HUDWON_FOLDER}${HUDSON_WAR} --httpPort=${PORT} --httpListenAddress=${ADDR} --argumentsRealm.roles.${HUDSON_ADMIN_USER}=admin > ${HUDWON_FOLDER}${HUDSON_LOG} 2>&1 &
+	nohup nice $JAVA -jar ${HUDSON_FOLDER}/${HUDSON_WAR} --httpPort=${PORT} --httpListenAddress=${ADDR} --argumentsRealm.roles.${HUDSON_ADMIN_USER}=admin > ${HUDSON_LOG} 2>&1 &
 	RETVAL=$?
 	echo
 }
