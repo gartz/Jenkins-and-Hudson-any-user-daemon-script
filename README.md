@@ -1,6 +1,8 @@
 Jernins and Hudson any user dameon script
 =========================================
 
+[![Analytics](https://ga-beacon.appspot.com/UA-24619548-7/Jenkins-and-Hudson-any-user-daemon-script/readme)](https://github.com/igrigorik/ga-beacon)
+
 It's the simplest way to any linux start and stop the Jerskins or Hudson .war file in a single bash user from a server. It will ran in background mode silent, and generate a log file to keep tracking the output.
 
 ### About CI:
